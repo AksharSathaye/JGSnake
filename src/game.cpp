@@ -12,9 +12,7 @@ const sf::Color Game::BACKGROUND_COLOR = sf::Color::White;
 
 Game::Game() : snake(this->startingPoint), food(), grid()
 {
-
-//    snake = Snake(startingPoint);
-  //  food = Food();
+    isGameOver = false;
 }
 
 void Game::runGame(Direction someDirection)
@@ -26,7 +24,7 @@ void Game::runGame(Direction someDirection)
     }
     else
     {
-        endGame();
+        isGameOver = true;
     }
 
 
@@ -42,6 +40,15 @@ void Game::drawGame(sf::RenderWindow &window)
 
 void Game::endGame()
 {
-    std::cout << "Game Over!\n" << std::endl;
+    //isGameOver = true;
+
+   std::cout << "Game Over!\n";
+   std::cout << "Final Score: " << food.getScore() << '\n';
+   std::cout << "Press q to exit." << std::endl;
     //TODO: Fix this from spamming in the console log. Maybe move the main.cpp's game loop into this class.
+}
+
+bool Game::getIsGameOver()
+{
+    return isGameOver;
 }

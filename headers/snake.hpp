@@ -24,7 +24,6 @@ class Snake : public GameScreen
 
     private: 
         //fields
-        static const sf::Color SNAKE_COLOR;
         std::deque<sf::RectangleShape> body;
         int length;
       //  static constexpr float blockSize = 10.0;// i would have liked to create a vector2f
@@ -44,6 +43,7 @@ class Snake : public GameScreen
         //functions
         Snake(const sf::Vector2f &startingPoint);
         Snake();
+        static const sf::Color SNAKE_COLOR;
 
         void move(Direction someDirection, Food &food,const Grid& grid); //using deltaTime for now.
 

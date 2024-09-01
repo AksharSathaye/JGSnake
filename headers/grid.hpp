@@ -13,10 +13,10 @@
 class Grid : public GameScreen
 {
     private:
-        static const sf::Color BORDER_COLOR;
         std::vector<sf::RectangleShape> wall;
 
     public:
+        static const sf::Color BORDER_COLOR;
         Grid();
         bool isTouchingWall(sf::Vector2f coordinates);
         void drawGrid(sf::RenderWindow &window);

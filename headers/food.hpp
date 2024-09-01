@@ -14,13 +14,12 @@
 class Food : public GameScreen 
 {
     private:
-        static const sf::Color FOOD_COLOR;
         sf::RectangleShape blob;
         int score;
 
     public:
         Food();
-        
+        static const sf::Color FOOD_COLOR;
         void regenerate();
         sf::RectangleShape getBlob() {return blob;}
         int getScore() {return score;}

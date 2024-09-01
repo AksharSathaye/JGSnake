@@ -42,7 +42,16 @@ int main()
     while(myWindow.isOpen())
     {
         sf::sleep(sf::seconds(0.05f));
-        
+        if(game.getIsGameOver())
+        {
+            game.endGame();
+            sf::sleep(sf::seconds(0.2f));
+            while(! sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+            {
+               //wait
+            }
+            myWindow.close();
+        }
         sf::Event myEvent;
 
         while(myWindow.pollEvent(myEvent))

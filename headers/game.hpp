@@ -15,16 +15,17 @@
 class Game : public GameScreen
 {
     private:
-        static const sf::Color BACKGROUND_COLOR;
      //   static constexpr unsigned int screenHeight = 600, screenWidth = 600 ;
         Snake snake;
         Food food;
         Grid grid;
         int score;
         const sf::Vector2f startingPoint = sf::Vector2f({static_cast<float>(screenHeight/2),static_cast<float>(screenWidth/2)});
-
+        bool isGameOver;
 
     public:
+        static const sf::Color BACKGROUND_COLOR;
+
         Game();
         
         void startGame();
@@ -36,5 +37,7 @@ class Game : public GameScreen
         void drawGame(sf::RenderWindow &window);
 
         Snake& getSnake() {return snake;}
+
+        bool getIsGameOver();
 
 };
