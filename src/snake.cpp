@@ -151,7 +151,7 @@ bool Snake::touchedAWall(const sf::Vector2f &offset)
 
 void Snake::printBody()
 {
-    for(auto square : body)
+    for(auto &square : body)
     {
         std::cout << square.getPosition().x << ", " << square.getPosition().y << '\n';
     }

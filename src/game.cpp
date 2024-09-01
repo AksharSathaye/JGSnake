@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-Game::Game() : snake(this->startingPoint), food()
+Game::Game() : snake(this->startingPoint), food(), grid()
 {
 
 //    snake = Snake(startingPoint);
@@ -27,6 +27,7 @@ void Game::runGame(Direction someDirection)
 void Game::drawGame(sf::RenderWindow &window)
 {   
     window.clear();
+    grid.drawGrid(window);
     food.drawFood(window);
     snake.drawSnake(window);
 }
