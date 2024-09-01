@@ -6,26 +6,28 @@
 #include <SFML/System/Vector2.hpp>
 #include <cstdlib>
 #include <deque>
-#include "snake.hpp"
+#include "../headers/snake.hpp"
+#include "../headers/direction.hpp"
 //#include <algorithm>
 //#include <random>
 #include <iostream>
 
 Snake::Snake(const sf::Vector2f &startingPoint)
 {
-    body.push_front(sf::RectangleShape({10,10}));
-    body.front().setPosition(startingPoint);
+    body.push_front(sf::RectangleShape({blockSize,blockSize}));
+    body.front().setPosition({screenWidth/2,screenHeight/2});
     body.front().setFillColor(sf::Color::Green);
 
     speedInBlocks = 1.0f;
     isAlive = true;
+    state = Direction::RIGHT;
 }
 
 /*
 *   TODO: figure out how to move the snake.
 *
 */
-void Snake::move(Direction someDirection, sf::RectangleShape &food)
+void Snake::move(Direction someDirection, Food &food)
 {
     if
     (
@@ -41,6 +43,7 @@ void Snake::move(Direction someDirection, sf::RectangleShape &food)
     {
         state = someDirection;
     }
+
     sf::Vector2f offset;
     
     //The following switch case is supposed to set the value of the new offset.
@@ -69,11 +72,9 @@ void Snake::move(Direction someDirection, sf::RectangleShape &food)
     {
         die(); //since snake touched itself.
     }
-    else if((  body.front().getGlobalBounds().intersects(food.getGlobalBounds()) ) )
+    else if((  body.front().getGlobalBounds().intersects(food.getBlob().getGlobalBounds()) ) )
     {
-        int newFoodX = std::rand();
-        int newFoodY = std::rand();
-        food.setPosition(static_cast<float>(newFoodX % 800),static_cast<float>(newFoodY % 600));
+        food.regenerate();
         sf::RectangleShape head = body.front();
         body.push_front(sf::RectangleShape({blockSize,blockSize}));
         //offset.x = blockSize*offset.x/(speedInBlocks*deltaTimeInSeconds);
@@ -82,7 +83,7 @@ void Snake::move(Direction someDirection, sf::RectangleShape &food)
         body.front().setPosition(head.getPosition()+offset);
 
     }
-    else //tou
+    else
     {
         
         body.pop_back();   

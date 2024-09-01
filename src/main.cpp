@@ -8,8 +8,10 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
 
-#include "snake.hpp"
-#include "direction.hpp"
+#include "../headers/snake.hpp"
+#include "../headers/direction.hpp"
+#include "../headers/gamescreen.hpp"
+#include "../headers/game.hpp"
 
 #include <cmath>
 
@@ -22,26 +24,18 @@ sf::Vector2f scaleToMagnitude(const sf::Vector2f &vec, double magnitude)
 
 int main()
 {
-   // const sf::Vector2i blockSize = {10,10};
-    std::cout << "hello world" << std::endl;
 
-    sf::RenderWindow myWindow(sf::VideoMode(800,600), "Snake Game");
-    Snake mySnake({300,300});
-    sf::RectangleShape food({10,10});
-    food.setFillColor(sf::Color::Red);
-    food.setPosition(200,200);
-
+    sf::RenderWindow myWindow(sf::VideoMode(GameScreen::screenWidth,GameScreen::screenHeight), "Snake Game");
+    Game game;
+    
     sf::Clock myClock;
     
     sf::Time deltaTime = myClock.restart(); 
 
     while(myWindow.isOpen())
     {
-        //if(deltaTime.asSeconds() >0.2)
-        //deltaTime = myClock.restart();
-        sf::sleep(sf::seconds(0.04f));
-        //float deltaTimeInSeconds = deltaTime.asSeconds();
-
+        sf::sleep(sf::seconds(0.05f));
+        
         sf::Event myEvent;
 
         while(myWindow.pollEvent(myEvent))
@@ -52,7 +46,6 @@ int main()
               //break;
             }
         }
-        //enemyCircle.move((scaleToMagnitude(myCircle.getPosition() - enemyCircle.getPosition(), enemySpeed))*deltaTimeInSeconds);
         
         Direction someDirection;
 
@@ -63,12 +56,10 @@ int main()
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
             someDirection = Direction::RIGHT;
-
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
             someDirection = Direction::DOWN;
-
         }
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
@@ -79,17 +70,15 @@ int main()
             myWindow.close();
         }
         
-        mySnake.move(someDirection,food);
+        game.runGame(someDirection);
+        
+        game.drawGame(myWindow);
         
         
-        myWindow.clear();
-
-        myWindow.draw(food);
-        mySnake.drawSnake(myWindow);
         myWindow.display();
 
     }
-    mySnake.printBody();
-
+    
+    game.getSnake().printBody();
     return 0;
 }
