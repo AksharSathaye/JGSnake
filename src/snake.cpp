@@ -1,3 +1,10 @@
+/*
+    Copyright 2024 Akshar Sathaye
+    This file is part of JGSnake.
+    JGSnake is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+    JGSnake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License along with JGSnake. If not, see <https://www.gnu.org/licenses/>. 
+*/
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
@@ -76,11 +83,8 @@ void Snake::move(Direction someDirection, Food &food, const Grid &grid)
         food.regenerate();
         sf::RectangleShape head = body.front();
         body.push_front(sf::RectangleShape({blockSize,blockSize}));
-        //offset.x = blockSize*offset.x/(speedInBlocks*deltaTimeInSeconds);
-        //offset.y = blockSize*offset.y/(speedInBlocks*deltaTimeInSeconds);
         body.front().setFillColor(sf::Color::Green);
         body.front().setPosition(head.getPosition()+offset);
-
     }
     else
     {
@@ -148,9 +152,8 @@ bool Snake::touchedAWall(const sf::Vector2f &offset, const Grid& grid)
     (
         body.front().getPosition().x  >= screenWidth-blockSize
         ||  body.front().getPosition().x  <= 0
-        ||  body.front().getPosition().y >= screenHeight-blockSize
+        ||  body.front().getPosition().y >= screenHeight-blockSize  
         ||  body.front().getPosition().y <= 0
-        //TODO: These -1s here should not be there. It should be a strict x,y >= screenWidth - blockSize.
     )
     {
         return true;

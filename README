@@ -1,0 +1,18 @@
+## Dedication
+
+JGSnake is dedicated to the principles of the GNU Project and the Free Software Foundation.
+In the incredibly unlikely (but wonderous) event that the GNU Project accepts this program into its repository of GNU programs, this program shall be renamed to GNU Snake.
+It is developed with the spirit of free software in mind and aims to adhere to the values of freedom, openness, and collaboration that the GNU Project promotes.
+Let us not be a snake ourselves by not sharing the source code with other people that would potentially benefit from it!
+Feel free to modify, share, and enjoy the game under the terms of the [GNU General Public License (GPL)](https://www.gnu.org/licenses/gpl-3.0.html).
+
+## What is JGSnake?
+
+JGSnake is a fully libre implementation of the popular retro arcade game "Snake."
+It is written in C++, with the SFML graphics library.
+
+(TODO: Add licensing of SFML in this project)
+
+## Compilation Instructions
+
+TODO:

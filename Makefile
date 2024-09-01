@@ -1,3 +1,9 @@
+#Copyright 2024 Akshar Sathaye
+#This file is part of JGSnake.
+#JGSnake is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+#JGSnake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#You should have received a copy of the GNU General Public License along with JGSnake. If not, see <https://www.gnu.org/licenses/>. 
+
 # Compiler and Linker
 CXX = g++
 CXXFLAGS = -std=c++20 -Wall -Wextra -I /usr/include -I ./headers # Include directory
@@ -11,7 +17,7 @@ OBJ = $(SRC:src/%.cpp=obj/%.o)
 DEPS = $(SRC:src/%.cpp=deps/%.d)
 #HED = $(headers/*.hpp)
 # Executable
-TARGET = snake 
+TARGET = jgsnake 
 
 # Default rule
 all: $(TARGET)
@@ -26,6 +32,7 @@ obj/%.o: src/%.cpp
 	$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@
 
 -include $(DEPS)
+#TODO: Get Makefile to re-compile dependencies of header files when the header files are modified.
 # Clean rule to remove built files
 clean:
 	rm -f $(TARGET) $(OBJ) $(DEPS)
