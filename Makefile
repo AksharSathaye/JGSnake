@@ -1,6 +1,6 @@
 # Compiler and Linker
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -Wextra -I /usr/include  # Include directory
+CXXFLAGS = -std=c++20 -Wall -Wextra -I /usr/include -I ./headers # Include directory
 
 # Linker flags
 LDFLAGS = -L /usr/lib -l sfml-graphics -l sfml-window -l sfml-system # Linker library path and library name
@@ -8,7 +8,8 @@ LDFLAGS = -L /usr/lib -l sfml-graphics -l sfml-window -l sfml-system # Linker li
 # Source and Object Files
 SRC = $(wildcard src/*.cpp)
 OBJ = $(SRC:src/%.cpp=obj/%.o)
-
+DEPS = $(SRC:src/%.cpp=deps/%.d)
+#HED = $(headers/*.hpp)
 # Executable
 TARGET = snake 
 
@@ -22,11 +23,12 @@ $(TARGET): $(OBJ)
 # Rule to compile source files into object files
 obj/%.o: src/%.cpp
 	mkdir -p obj
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@
 
+-include $(DEPS)
 # Clean rule to remove built files
 clean:
-	rm -f $(TARGET) $(OBJ)
+	rm -f $(TARGET) $(OBJ) $(DEPS)
 	rm -rf obj
 
 # Phony targets

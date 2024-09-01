@@ -15,7 +15,7 @@ Grid::Grid()
     wall.back().setPosition({screenWidth,screenHeight});
 */
 
-    for(int i = 1; i < screenWidth; i++)
+    for(int i = 1; i < screenWidth; i = i + blockSize)
     {
         wall.push_back(sf::RectangleShape({blockSize,blockSize}));
         wall.back().setPosition({(float)i,0});
@@ -26,7 +26,7 @@ Grid::Grid()
         wall.back().setFillColor(sf::Color::White);
     }
 
-    for(int j = 1; j < screenHeight; j++)
+    for(int j = 1; j < screenHeight; j=j+blockSize)
     { 
         wall.push_back(sf::RectangleShape({blockSize,blockSize}));
         wall.back().setPosition({0,(float)j});

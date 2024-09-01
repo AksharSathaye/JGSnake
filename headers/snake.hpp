@@ -8,6 +8,7 @@
 #include "direction.hpp"
 #include "food.hpp"
 #include "gamescreen.hpp"
+#include "grid.hpp"
 
 class Snake : public GameScreen
 {
@@ -26,7 +27,7 @@ class Snake : public GameScreen
         //functions
         bool isFoodHere(const sf::Vector2f &space) const;
         bool isSelfCollision(const sf::Vector2f & );
-        bool touchedAWall(const sf::Vector2f &offset);
+        bool touchedAWall(const sf::Vector2f &offset, const Grid &grid);
         void die();
 
     
@@ -36,7 +37,7 @@ class Snake : public GameScreen
         Snake(const sf::Vector2f &startingPoint);
         Snake();
 
-        void move(Direction someDirection, Food &food); //using deltaTime for now.
+        void move(Direction someDirection, Food &food,const Grid& grid); //using deltaTime for now.
 
 
 

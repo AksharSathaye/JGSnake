@@ -48,20 +48,33 @@ int main()
         }
         
         Direction someDirection;
-
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        {
+            std::cout << "Paused. Press Space again to resume." << std::endl;
+            sf::sleep(sf::seconds(0.2f));
+            while(! sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+            {
+               //wait
+            }
+            sf::sleep(sf::seconds(0.2f));
+        }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+        || sf::Keyboard::isKeyPressed(sf::Keyboard::H))
         {
             someDirection = Direction::LEFT;
         }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
+         || sf::Keyboard::isKeyPressed(sf::Keyboard::L))
         {
             someDirection = Direction::RIGHT;
         }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)
+         || sf::Keyboard::isKeyPressed(sf::Keyboard::J))
         {
             someDirection = Direction::DOWN;
         }
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)
+         || sf::Keyboard::isKeyPressed(sf::Keyboard::K))
         {
             someDirection = Direction::UP;
         }

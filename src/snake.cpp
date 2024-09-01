@@ -7,7 +7,6 @@
 #include <cstdlib>
 #include <deque>
 #include "../headers/snake.hpp"
-#include "../headers/direction.hpp"
 //#include <algorithm>
 //#include <random>
 #include <iostream>
@@ -27,7 +26,7 @@ Snake::Snake(const sf::Vector2f &startingPoint)
 *   TODO: figure out how to move the snake.
 *
 */
-void Snake::move(Direction someDirection, Food &food)
+void Snake::move(Direction someDirection, Food &food, const Grid &grid)
 {
     if
     (
@@ -68,7 +67,7 @@ void Snake::move(Direction someDirection, Food &food)
     }
 
 
-    if(isSelfCollision(offset) || touchedAWall(offset))
+    if(isSelfCollision(offset) || touchedAWall(offset, grid))
     {
         die(); //since snake touched itself.
     }
@@ -143,10 +142,20 @@ bool Snake::isSelfCollision(const sf::Vector2f & offset)
     return false;
 }
 
-bool Snake::touchedAWall(const sf::Vector2f &offset)
+bool Snake::touchedAWall(const sf::Vector2f &offset, const Grid& grid)
 {
-    return false; 
-    //TODO: implement walls. otherwise this is just a function that returns false.
+    if
+    (
+        body.front().getPosition().x  >= screenWidth-blockSize
+        ||  body.front().getPosition().x  <= 0
+        ||  body.front().getPosition().y >= screenHeight-blockSize
+        ||  body.front().getPosition().y <= 0
+        //TODO: These -1s here should not be there. It should be a strict x,y >= screenWidth - blockSize.
+    )
+    {
+        return true;
+    }
+    else return false;
 }
 
 void Snake::printBody()
