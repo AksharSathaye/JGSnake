@@ -22,6 +22,8 @@ class Game : public GameScreen
         int score;
         const sf::Vector2f startingPoint = sf::Vector2f({static_cast<float>(screenHeight/2),static_cast<float>(screenWidth/2)});
         bool isGameOver;
+        
+
 
     public:
         static const sf::Color BACKGROUND_COLOR;
@@ -30,7 +32,7 @@ class Game : public GameScreen
         
         void startGame();
 
-        void runGame(Direction someDirection);
+        void runGame(Direction direction);
 
         void endGame();
 
@@ -39,5 +41,7 @@ class Game : public GameScreen
         Snake& getSnake() {return snake;}
 
         bool getIsGameOver();
+
+        void getKeyboardInputs(sf::RenderWindow &window);
 
 };

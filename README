@@ -9,10 +9,27 @@ Feel free to modify, share, and enjoy the game under the terms of the [GNU Gener
 ## What is JGSnake?
 
 JGSnake is a fully libre implementation of the popular retro arcade game "Snake."
-It is written in C++, with the SFML graphics library.
+It is written in C++20, with the SFML graphics library.
 
 (TODO: Add licensing of SFML in this project)
 
-## Compilation Instructions
+## Build Instructions
 
-TODO:
+1. Clone the Repository.
+```
+$ git clone <this_repo_uri>
+```
+2. Install the `sfml` library and `g++` depending on your operating system (This example is for Arch Linux)
+```
+$ sudo pacman -S sfml base-devel make
+```
+3. Run the makefile, 
+```
+$ cd sfml-project
+$ make clean
+$ make
+```
+4. Run the program.
+```
+$ ./jgsnake
+```

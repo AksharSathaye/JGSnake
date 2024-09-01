@@ -6,9 +6,10 @@
     You should have received a copy of the GNU General Public License along with JGSnake. If not, see <https://www.gnu.org/licenses/>. 
 */
 #include "../headers/game.hpp"
+#include <SFML/Graphics/RenderWindow.hpp>
 #include <iostream>
 
-const sf::Color Game::BACKGROUND_COLOR = sf::Color::White;
+const sf::Color Game::BACKGROUND_COLOR = sf::Color::Black;
 
 Game::Game() : snake(this->startingPoint), food(), grid()
 {
@@ -26,7 +27,6 @@ void Game::runGame(Direction someDirection)
     {
         isGameOver = true;
     }
-
 
 }
 
@@ -51,4 +51,60 @@ void Game::endGame()
 bool Game::getIsGameOver()
 {
     return isGameOver;
+}
+
+void Game::getKeyboardInputs(sf::RenderWindow &window)
+{
+    Direction someDirection = Direction::NULL_DIRECTION;
+
+    if(getIsGameOver())
+    {
+        endGame();
+        sf::sleep(sf::seconds(0.2f));
+        while(! sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+        {
+            sf::sleep(sf::seconds(0.4f));
+        }
+        window.close();
+        return;
+    }
+
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+        std::cout << "Paused. Press Space again to resume." << std::endl;
+        sf::sleep(sf::seconds(0.2f));
+        while(! sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        {
+            sf::sleep(sf::seconds(0.2f));
+        }
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+    || sf::Keyboard::isKeyPressed(sf::Keyboard::H))
+    {
+        someDirection = Direction::LEFT;
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
+     || sf::Keyboard::isKeyPressed(sf::Keyboard::L))
+    {
+        someDirection = Direction::RIGHT;
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)
+     || sf::Keyboard::isKeyPressed(sf::Keyboard::J))
+    {
+        someDirection = Direction::DOWN;
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)
+     || sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+    {
+        someDirection = Direction::UP;
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+    {
+        window.close();
+    }
+    
+    runGame(someDirection);
+    
+    drawGame(window);
+
 }

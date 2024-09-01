@@ -43,6 +43,7 @@ void Snake::move(Direction someDirection, Food &food, const Grid &grid)
         || (someDirection == Direction::UP && state == Direction::DOWN)
         || (someDirection == Direction::LEFT && state == Direction::RIGHT)
         || (someDirection == Direction::RIGHT && state == Direction::LEFT)
+        || (someDirection == Direction::NULL_DIRECTION)
     )
     {
         someDirection = state;

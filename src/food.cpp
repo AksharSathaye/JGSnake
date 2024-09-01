@@ -14,7 +14,8 @@ Food::Food()
     blob = sf::RectangleShape({blockSize,blockSize});
     blob.setFillColor(FOOD_COLOR);
 
-    blob.setPosition(3*screenWidth/4,screenHeight/4);   
+    //blob.setPosition(3*screenWidth/4,screenHeight/4);   
+    regenerate();
     score = 0;
 }
 

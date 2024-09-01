@@ -10,7 +10,7 @@
 #include <SFML/Graphics/Rect.hpp>
 
 
-const sf::Color Grid::BORDER_COLOR = sf::Color::Black;
+const sf::Color Grid::BORDER_COLOR = sf::Color(0x69,0x69,0x69);
 
 Grid::Grid()
 {
