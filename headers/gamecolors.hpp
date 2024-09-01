@@ -5,24 +5,7 @@
     JGSnake is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
     You should have received a copy of the GNU General Public License along with JGSnake. If not, see <https://www.gnu.org/licenses/>. 
 */
-#pragma once
 
-#include "gamescreen.hpp"
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics.hpp>
-
-class Food : public GameScreen 
-{
-    private:
-        static const sf::Color FOOD_COLOR;
-        sf::RectangleShape blob;
-        int score;
-
-    public:
-        Food();
-        
-        void regenerate();
-        sf::RectangleShape getBlob() {return blob;}
-        int getScore() {return score;}
-        void drawFood(sf::RenderWindow &window);
-};
+//The only reason why I'm using the inferior spelling of "colour" is because SFML unfortunately also uses it. Consistency!
+// This file MAY in the future be used to hold all the colours of all the assets in one file, 
+// Or maybe a function that can set some of these colours (eg. snake colour) depending on user prefs.

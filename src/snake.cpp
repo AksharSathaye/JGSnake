@@ -18,11 +18,13 @@
 //#include <random>
 #include <iostream>
 
+const sf::Color Snake::SNAKE_COLOR = sf::Color::Green;
+
 Snake::Snake(const sf::Vector2f &startingPoint)
 {
     body.push_front(sf::RectangleShape({blockSize,blockSize}));
     body.front().setPosition({screenWidth/2,screenHeight/2});
-    body.front().setFillColor(sf::Color::Green);
+    body.front().setFillColor(SNAKE_COLOR);
 
     speedInBlocks = 1.0f;
     isAlive = true;
@@ -83,7 +85,7 @@ void Snake::move(Direction someDirection, Food &food, const Grid &grid)
         food.regenerate();
         sf::RectangleShape head = body.front();
         body.push_front(sf::RectangleShape({blockSize,blockSize}));
-        body.front().setFillColor(sf::Color::Green);
+        body.front().setFillColor(SNAKE_COLOR);
         body.front().setPosition(head.getPosition()+offset);
     }
     else
@@ -93,7 +95,7 @@ void Snake::move(Direction someDirection, Food &food, const Grid &grid)
         sf::RectangleShape head = body.front();
         body.push_front(sf::RectangleShape({blockSize,blockSize}));
         body.front().setPosition(head.getPosition()+offset);
-        body.front().setFillColor(sf::Color::Green);
+        body.front().setFillColor(SNAKE_COLOR);
 
     }
 

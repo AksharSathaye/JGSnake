@@ -9,6 +9,9 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Rect.hpp>
 
+
+const sf::Color Grid::BORDER_COLOR = sf::Color::Black;
+
 Grid::Grid()
 {
     //Push the corners in
@@ -26,22 +29,22 @@ Grid::Grid()
     {
         wall.push_back(sf::RectangleShape({blockSize,blockSize}));
         wall.back().setPosition({(float)i,0});
-        wall.back().setFillColor(sf::Color::White);
+        wall.back().setFillColor(BORDER_COLOR);
        
         wall.push_back(sf::RectangleShape({blockSize,blockSize}));
         wall.back().setPosition({(float)i,screenHeight-blockSize});
-        wall.back().setFillColor(sf::Color::White);
+        wall.back().setFillColor(BORDER_COLOR);
     }
 
     for(int j = 1; j < screenHeight; j=j+blockSize)
     { 
         wall.push_back(sf::RectangleShape({blockSize,blockSize}));
         wall.back().setPosition({0,(float)j});
-        wall.back().setFillColor(sf::Color::White);
+        wall.back().setFillColor(BORDER_COLOR);
 
         wall.push_back(sf::RectangleShape({blockSize,blockSize}));
         wall.back().setPosition({screenWidth-blockSize,(float)j});
-        wall.back().setFillColor(sf::Color::White);
+        wall.back().setFillColor(BORDER_COLOR);
     }
 }
 

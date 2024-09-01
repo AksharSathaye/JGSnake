@@ -13,6 +13,7 @@
 class Grid : public GameScreen
 {
     private:
+        static const sf::Color BORDER_COLOR;
         std::vector<sf::RectangleShape> wall;
 
     public:

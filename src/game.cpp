@@ -8,6 +8,7 @@
 #include "../headers/game.hpp"
 #include <iostream>
 
+const sf::Color Game::BACKGROUND_COLOR = sf::Color::White;
 
 Game::Game() : snake(this->startingPoint), food(), grid()
 {
@@ -33,7 +34,7 @@ void Game::runGame(Direction someDirection)
 
 void Game::drawGame(sf::RenderWindow &window)
 {   
-    window.clear();
+    window.clear(BACKGROUND_COLOR);
     grid.drawGrid(window);
     food.drawFood(window);
     snake.drawSnake(window);

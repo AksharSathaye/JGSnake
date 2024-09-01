@@ -15,6 +15,7 @@
 class Game : public GameScreen
 {
     private:
+        static const sf::Color BACKGROUND_COLOR;
      //   static constexpr unsigned int screenHeight = 600, screenWidth = 600 ;
         Snake snake;
         Food food;

@@ -7,11 +7,12 @@
 */
 #include "../headers/food.hpp"
 
+const sf::Color Food::FOOD_COLOR = sf::Color::Red;
 
 Food::Food()
 {
     blob = sf::RectangleShape({blockSize,blockSize});
-    blob.setFillColor(sf::Color::Red);
+    blob.setFillColor(FOOD_COLOR);
 
     blob.setPosition(3*screenWidth/4,screenHeight/4);   
     score = 0;

@@ -8,6 +8,7 @@
 #pragma once
 #include <SFML/Graphics.hpp> //for the RenderWindow class. Sorry for inputting everything!
 //need to find the exact header file for this.
+#include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
@@ -23,7 +24,7 @@ class Snake : public GameScreen
 
     private: 
         //fields
-    
+        static const sf::Color SNAKE_COLOR;
         std::deque<sf::RectangleShape> body;
         int length;
       //  static constexpr float blockSize = 10.0;// i would have liked to create a vector2f
