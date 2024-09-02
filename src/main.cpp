@@ -36,7 +36,7 @@ int main()
 
     while(myWindow.isOpen())
     {
-        sf::sleep(sf::seconds(0.05f));
+        sf::sleep(sf::seconds(0.04f));
 
         sf::Event myEvent;
 
@@ -55,6 +55,6 @@ int main()
 
     }
     
-    game.getSnake().printBody();
+  //  game.getSnake().printBody();
     return 0;
 }

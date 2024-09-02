@@ -79,7 +79,7 @@ void Snake::move(Direction someDirection, Food &food, const Grid &grid)
 
     if(isSelfCollision(offset) || touchedAWall(offset, grid))
     {
-        die(); //since snake touched itself.
+        die(); //since snake touched itself or a wall
     }
     else if((  body.front().getGlobalBounds().intersects(food.getBlob().getGlobalBounds()) ) )
     {

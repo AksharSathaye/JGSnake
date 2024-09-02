@@ -8,10 +8,13 @@
 #include "../headers/game.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <iostream>
+#include <string>
+#include <fstream>
 
 const sf::Color Game::BACKGROUND_COLOR = sf::Color::Black;
+const sf::Vector2f Game::startingPoint = sf::Vector2f({static_cast<float>(GameScreen::screenHeight/2),static_cast<float>(GameScreen::screenWidth/2)});
 
-Game::Game() : snake(this->startingPoint), food(), grid()
+Game::Game() : snake(Game::startingPoint), food(), grid()
 {
     isGameOver = false;
 }
@@ -40,12 +43,9 @@ void Game::drawGame(sf::RenderWindow &window)
 
 void Game::endGame()
 {
-    //isGameOver = true;
-
    std::cout << "Game Over!\n";
-   std::cout << "Final Score: " << food.getScore() << '\n';
-   std::cout << "Press q to exit." << std::endl;
-    //TODO: Fix this from spamming in the console log. Maybe move the main.cpp's game loop into this class.
+   std::cout << "Final Score: " << food.getScore() << '\n'; 
+   std::cout << "Press s to record score, press q to exit." << std::endl;
 }
 
 bool Game::getIsGameOver()
@@ -61,9 +61,38 @@ void Game::getKeyboardInputs(sf::RenderWindow &window)
     {
         endGame();
         sf::sleep(sf::seconds(0.2f));
-        while(! sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+        bool hasSaved = false;
+        while(true)
         {
-            sf::sleep(sf::seconds(0.4f));
+            sf::sleep(sf::seconds(0.2f));
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+            {
+                window.close();
+                return;
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !hasSaved)
+            {
+
+                std::string name;
+                std::cout << "Enter your name: ";
+                std::getline(std::cin, name);
+                std::ifstream recordsFileIn("records.log");
+                bool fileExists = recordsFileIn.good();
+                std::ofstream recordsFileOut("records.log", std::ios::app);
+
+                if(recordsFileOut.is_open())
+                {
+                    if(!fileExists)
+                    {
+                        std::cout << "Created records.log" << std::endl;
+                        recordsFileOut << "Snake Leaderboard\n\n" << std::endl;
+                    }
+                    recordsFileOut << name << ": " << food.getScore() << std::endl;
+                    std::cout << "Record has been written to records.log\nYou may now close the game (press q or Ctrl+C)." << std::endl ; 
+                }
+                
+
+            }
         }
         window.close();
         return;
