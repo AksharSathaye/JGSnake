@@ -5,5 +5,11 @@
 #You should have received a copy of the GNU General Public License along with JGSnake. If not, see <https://www.gnu.org/licenses/>. 
 
 jgsnake 
+snake
 obj/
 deps/
+records.log
+obj/records.log
+deps/records.log
+src/records.log
+headers/records.log
