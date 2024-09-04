@@ -36,7 +36,7 @@ int main()
 
     while(myWindow.isOpen())
     {
-        sf::sleep(sf::seconds(0.1f));
+        sf::sleep(sf::seconds(0.04f));
 
         sf::Event myEvent;
 
